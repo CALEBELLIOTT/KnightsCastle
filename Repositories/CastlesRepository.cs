@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using KnightCastle.Models;
 
@@ -25,6 +27,18 @@ namespace KnightsCastle.Repositories
       int id = _db.ExecuteScalar<int>(sql, castleData);
       castleData.Id = id;
       return castleData;
+    }
+
+
+    internal List<Castle> getAll()
+    {
+      string sql = @"SELECT * FROM castles";
+      return _db.Query<Castle>(sql).ToList();
+    }
+    internal Castle getById(int id)
+    {
+      string sql = @"SELECT * FROM castles WHERE id = @id";
+      return _db.QueryFirstOrDefault<Castle>(sql, new { id });
     }
   }
 }

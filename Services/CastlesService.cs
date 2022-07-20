@@ -14,9 +14,23 @@ namespace KnightsCastle.Services
     {
       repo = cr;
     }
+
+
     internal Castle Create(Castle castleData)
     {
       return repo.Create(castleData);
+    }
+
+
+
+    internal List<Castle> getAll()
+    {
+      return repo.getAll();
+    }
+
+    internal Castle getById(int id)
+    {
+      return repo.getById(id);
     }
   }
 }

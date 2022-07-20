@@ -32,5 +32,33 @@ namespace KnightsCastle.Controllers
       }
     }
 
+    [HttpGet]
+    public ActionResult<List<Castle>> GetAll()
+    {
+      try
+      {
+        List<Castle> castles = _cs.getAll();
+        return Ok(castles);
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<Castle> getById(int id)
+    {
+      try
+      {
+        Castle castle = _cs.getById(id);
+        return Ok(castle);
+      }
+      catch (System.Exception e)
+      {
+        return Ok(e.Message);
+      }
+    }
+
   }
 }
